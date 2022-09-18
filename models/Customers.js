@@ -1,34 +1,44 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const roomTypeSchema = new Schema({
-    title: {
+const customersSchema = new Schema({
+    firstName: {
         type: String,
         required: true
     },
-    shortcode: {
+    lastName: {
         type: String,
         required: true
     },
-    adultCapacity: {
+    email: {
         type: String,
         required: true
     },
-    kidsCapacity: {
+    mobileNo: {
         type: String,
         required: true
     },
-    basePrice: {
+    address: {
         type: String,
         required: true
     },
-    roomTypeStatus: {
+    country: {
         type: String,
         required: true
     },
-    roomFacilities: {
+    state: {
+        type: String
+    },
+    city: {
+        type: String
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    age: {
         type: String
     }
 })
 
-module.exports = mongoose.model('RoomTypes', roomTypeSchema);
+module.exports = mongoose.model('Customers', customersSchema);

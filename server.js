@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const roomTypesRoutes = require('./routes/roomTypesRoutes');
+const roomsRoutes = require('./routes/roomsRoutes');
+const customersRoutes = require('./routes/customerRoutes');
  
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -16,6 +18,8 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true} ).then(() => con
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/roomtypes', roomTypesRoutes);
+app.use('/api/rooms', roomsRoutes);
+app.use('/api/customers', customersRoutes);
 
 app.get('/', (req, res) => {
     res.json("Welcome to Hotel management System")

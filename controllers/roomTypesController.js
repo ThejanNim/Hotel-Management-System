@@ -2,7 +2,7 @@ const RoomTypes = require('../models/RoomTypes');
 
 exports.addRoomTypes = async (req, res) => {
     try {
-        const {title, shortcode, adultCapacity, kidsCapacity, basePrice, roomStatus, roomFacilities} = req.body;
+        const {title, shortcode, adultCapacity, kidsCapacity, basePrice, roomTypeStatus, roomFacilities} = req.body;
 
     if (!title || !shortcode || !adultCapacity || !kidsCapacity || !basePrice || !roomStatus ) {
             return res.status(400).json({Error: "Please Provide Room Types details."});
@@ -14,7 +14,7 @@ exports.addRoomTypes = async (req, res) => {
             adultCapacity: adultCapacity,
             kidsCapacity: kidsCapacity,
             basePrice: basePrice,
-            roomStatus: roomStatus,
+            roomTypeStatus: roomTypeStatus,
             roomFacilities: roomFacilities
         });
         
@@ -32,5 +32,17 @@ exports.addRoomTypes = async (req, res) => {
 
     } catch (error) {
         return res.status(400).json({ error: 'Your request could not be processed. Please try again.'});   
+    }
+}
+
+exports.allRoomTypes = async (req, res) => {
+    try {
+        RoomTypes.find({}).then(function(allroomtypes) {
+            res.status(200).json(allroomtypes);
+        }).catch(err => {
+            res.status(400).json({error: "Sorry, Can't get List of room types"});
+        })
+    } catch (error) {
+        return res.status(400).json({ error: 'Your request could not be processed. Please try again.'});    
     }
 }
